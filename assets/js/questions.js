@@ -1,41 +1,15 @@
-// variables to keep track of quiz state
+// add at least 5 qs
 
-var currentQuestionIndex = 0;
-var time = questions.length * 15;
-var timerId;
-
-
-// variables to ref DOM elements
-
-var questionsEl = document.getElementById("questions");
-
-// var timerEl = 
-// var choicesEl = 
-// var submitBtn = 
-// var startBtn = 
-// var initialsEl = 
-// var feedbackEl = 
-
-function startQuiz () {
-
-}
-
-function clockTick () {
-
-}
-
-function getQuestion () {
-
-}
-
-function questionClick () {
-
-}
-
-function quizEnd () {
-
-}
-
-// user clicks button to start quiz
-
-startBtn.onclick = startQuiz;
+var questions = [
+    {
+        title: "What color is the sky?", 
+        choices: ["Green", "Red", "Blue", "Orange"],
+        answer: "Blue"
+    },
+    {
+        title: "What color is the sky?", 
+        choices: ["Green", "Red", "Blue", "Orange"],
+        answer: "Blue"
+    },
+    
+]
