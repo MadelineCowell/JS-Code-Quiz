@@ -16,6 +16,9 @@ var startBtn = document.getElementById("start");
 var initialsEl = document.getElementById("initials");
 var feedbackEl = document.getElementById("feedback");
 
+
+//Starting timer + unhiding quiz
+
 function startQuiz() {
     var startScreenEl = document.getElementById("start-screen");
     startScreenEl.setAttribute("class", "hide");
@@ -24,6 +27,8 @@ function startQuiz() {
     timerEl.textContent = time;
     getQuestion()
 }
+
+// Timer 
 
 function clockTick() {
     time--
@@ -35,33 +40,56 @@ function clockTick() {
     }
 }
 
+// Showing question + choices, create loop through all qs
+
 function getQuestion() {
-    var currentQuestion = questions[currentQuestionIndex]
-    var titleEl = document.getElementById("question-title")
-    titleEl.textContent = currentQuestion.title
-    choicesEl.innerHTML = ""
-    currentQuestion, choices.forEach(function (choice) {
-        var choiceNode = document.createElement("button")
-        choiceNode.setAttribute("class", "choice")
-        choiceNode.setAttribute("value", choice)
-        choiceNode.textContent = choice
-        choiceNode.onclick = questionClick
-        choicesEl.appendChild(choiceNode)
-    })
-}
+    // get current question object from array
+    var currentQuestion = questions[currentQuestionIndex];
+  
+    // update title with current question
+    var titleEl = document.getElementById("question-title");
+    titleEl.textContent = currentQuestion.title;
+  
+    // clear out any old question choices
+    choicesEl.innerHTML = "";
+  
+    // loop over choices
+    currentQuestion.choices.forEach(function(choice, i) {
+      // create new button for each choice
+      var choiceNode = document.createElement("button");
+      choiceNode.setAttribute("class", "choice");
+      choiceNode.setAttribute("value", choice);
+  
+      choiceNode.textContent = i + 1 + ". " + choice;
+  
+      // attach click event listener to each choice
+      choiceNode.onclick = questionClick;
+  
+      // display on the page
+      choicesEl.appendChild(choiceNode);
+    });
+  }
+
+// Create feedback on user selection + move to next step
 
 function questionClick() {
     if (
-        this.Value !== questions[currentQuestionIndex].answer
+        this.Value = questions[currentQuestionIndex].answer
     ) {
+        feedbackEl.textContent = "Correct!"
+        // Insert sfx
+    } else {
         time = time - 15
         timerEl.textContent = time
-        // Insert sfx here
-        feedbackEl.textContent = "Incorrect answer."
-    } else {
-        feedbackEl.textContent = "Correct answer!"
-        // Insert sfx
+        // Insert sfx 
+        feedbackEl.textContent = "Incorrect!"
     }
+
+// Notify user of choice selection
+    feedbackEl.setAttribute("class", "feedback");
+    setTimeout(function() {
+        feedbackEl.setAttribute("class", "feedback hide");
+    }, 1000);
 
     currentQuestionIndex++
 
@@ -74,8 +102,11 @@ function questionClick() {
         getQuestion()
     }
 
-
 }
+
+
+
+// End quiz
 
 function quizEnd() {
     clearInterval(timerId);
@@ -85,6 +116,6 @@ function quizEnd() {
 
 }
 
-// user clicks button to start quiz
+// User clicks button to start quiz
 
 startBtn.onclick = startQuiz;
