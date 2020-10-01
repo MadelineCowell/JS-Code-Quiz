@@ -78,7 +78,7 @@ function questionClick() {
     ) {
         feedbackEl.textContent = "Correct!"
         // Insert sfx
-        
+
     } else {
         time = time - 15
         timerEl.textContent = time
@@ -90,7 +90,7 @@ function questionClick() {
     feedbackEl.setAttribute("class", "feedback");
     setTimeout(function() {
         feedbackEl.setAttribute("class", "feedback hide");
-    }, 1000);
+    }, 5000);
 
     currentQuestionIndex++
 
