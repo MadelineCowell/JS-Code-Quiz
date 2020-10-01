@@ -78,6 +78,7 @@ function questionClick() {
     ) {
         feedbackEl.textContent = "Correct!"
         // Insert sfx
+        
     } else {
         time = time - 15
         timerEl.textContent = time
